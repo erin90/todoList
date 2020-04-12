@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <form action = "/add/" method = "POST"> {% csrf_token %}
+            <input type = "text" name = "value">
+            <input type = "submit" name = "add">
+        </form>
+        <ul>
+            <!-- <li>Im going to eat</li>
+            <li>Im going to study</li>
+            <li>Im going to watch</li> -->
+            {% for task_item in all_items %}
+                <li>{{ task_item.content }}</li>
+                <form action = "/delete/{{task_item.id}}/" style="display: inline;" method = "POST"> {% csrf_token %}
+                    <input type="submit" value = "delete">
+                </form>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
